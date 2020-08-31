@@ -48,11 +48,10 @@ encoded_sequence = [to_categorical(sentence, num_classes=vocab_size+1) for sente
 x_array = np.array(encoded_sequence)
 
 
-
 model = Sequential()
-model.add(LSTM(128, return_sequences=True, input_shape=(x_array.shape[1], x_array.shape[2]), dropout=0.5))
-model.add(LSTM(128, return_sequences=True, dropout=0.5))
-model.add(LSTM(128, dropout=0.5))
+model.add(LSTM(128, input_shape=(x_array.shape[1], x_array.shape[2]), dropout=0.5))
+# model.add(LSTM(128, return_sequences=True, dropout=0.5))
+# model.add(LSTM(128, dropout=0.5))
 model.add(Dense(y_train.shape[1], activation='softmax'))
 print(model.summary())
 # compile model
